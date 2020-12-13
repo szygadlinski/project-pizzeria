@@ -1,6 +1,7 @@
 {
-  "product": {
-    "cake": {
+  "product": [
+    {
+      "id": "cake",
       "class": "small",
       "name": "Zio Stefano's Doughnut",
       "price": 9,
@@ -9,7 +10,8 @@
         "<img class=\"active\" src=\"images/doughnut.svg\">"
       ]
     },
-    "breakfast": {
+    {
+      "id": "breakfast",
       "class": "small",
       "name": "Zia Giulia's Breakfast",
       "price": 9,
@@ -43,7 +45,8 @@
         }
       }
     },
-    "pizza": {
+    {
+      "id": "pizza",
       "name": "Nonna Alba's Pizza",
       "price": 20,
       "description": "The true taste of Italy &ndash; homemade pizza as prepared by our grandmothers in old-fashoned brick ovens. Choose your favorite topping and enjoy your comfort food! All ingredients come straight from eco-friendly, trusted farms in the Italian countryside.",
@@ -142,7 +145,8 @@
         }
       }
     },
-    "salad": {
+    {
+      "id": "salad",
       "name": "Nonno Alberto's Salad",
       "price": 9,
       "description": "A delicious salad made of fresh, home-grown products on a crispy lettuce base.",
@@ -197,5 +201,59 @@
         }
       }
     }
-  }
+  ],
+  "order": [],
+  "event": [
+    {
+      "id": 1,
+      "date": "2019-01-01",
+      "hour": "12:30",
+      "table": 1,
+      "repeat": false,
+      "duration": 4,
+      "ppl": 3,
+      "starters": []
+    },
+    {
+      "id": 2,
+      "date": "2019-01-01",
+      "hour": "16:00",
+      "table": 3,
+      "repeat": "daily",
+      "duration": 2,
+      "ppl": 3,
+      "starters": ["bread", "lemonWater"]
+    },
+    {
+      "id": 3,
+      "date": "2019-01-01",
+      "hour": "12:00",
+      "table": 3,
+      "repeat": "daily",
+      "duration": 2,
+      "ppl": 3,
+      "starters": ["bread", "lemonWater"]
+    },
+    {
+      "id": 4,
+      "date": "2019-01-01",
+      "hour": "13:00",
+      "table": 2,
+      "repeat": "daily",
+      "duration": 4,
+      "ppl": 3,
+      "starters": []
+    },
+    {
+      "id": 5,
+      "date": "2019-01-01",
+      "hour": "18:00",
+      "table": 2,
+      "repeat": "daily",
+      "duration": 2,
+      "ppl": 3,
+      "starters": ["lemonWater"]
+    }
+  ],
+  "booking": []
 }
