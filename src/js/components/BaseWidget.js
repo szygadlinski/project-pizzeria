@@ -20,7 +20,6 @@ class BaseWidget{
     const newValue = thisWidget.parseValue(value);
     //thisWidget.correctValue = thisWidget.correctValue || settings.amountWidget.defaultValue;
 
-    /* TODO: Add validation */
     if (newValue !== thisWidget.correctValue && thisWidget.isValid(newValue)) {
       thisWidget.correctValue = newValue;
     }
