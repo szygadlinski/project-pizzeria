@@ -9,6 +9,8 @@ class Booking {
   constructor(wrapper){
     const thisBooking = this;
 
+    // thisBooking.pickedTable = '';
+
     thisBooking.render(wrapper);
     thisBooking.initWidgets();
     thisBooking.getData();
@@ -96,7 +98,7 @@ class Booking {
       }
     }
 
-    // console.log('thisBooking.booked', thisBooking.booked);
+    console.log('thisBooking.booked', thisBooking.booked);
 
     thisBooking.updateDOM();
   }
@@ -155,6 +157,79 @@ class Booking {
     }
   }
 
+  pickTable(){
+    const thisBooking = this;
+
+    const pickedTable = event.target.closest(select.booking.tables);
+
+    if(pickedTable){
+      if(!pickedTable.classList.contains(classNames.booking.tableBooked)){
+        if(!pickedTable.classList.contains(classNames.booking.tablePicked)){
+          for(let table of thisBooking.dom.tables){
+            table.classList.remove(classNames.booking.tablePicked);
+          }
+          pickedTable.classList.add(classNames.booking.tablePicked);
+          thisBooking.pickedTable = pickedTable.getAttribute(settings.booking.tableIdAttribute);
+        } else {
+          pickedTable.classList.remove(classNames.booking.tablePicked);
+          thisBooking.pickedTable = 'null';
+        }
+      } else {
+        alert('Table unavailable!');
+      }
+    } else {
+      for(let table of thisBooking.dom.tables){
+        table.classList.remove(classNames.booking.tablePicked);
+      }
+      thisBooking.pickedTable = 'null';
+    }
+
+    // console.log(pickedTable);
+    // console.log(thisBooking.pickedTable);
+  }
+
+  sendBooking(){
+    const thisBooking = this;
+
+    const url = settings.db.url + '/' + settings.db.booking;
+
+    const payload = {
+      date: thisBooking.date,
+      hour: thisBooking.hourPicker.value,
+      table: parseInt(thisBooking.pickedTable),
+      duration: parseInt(thisBooking.dom.duration.value),
+      ppl: parseInt(thisBooking.dom.peoples.value),
+      starters: [],
+      phone: thisBooking.dom.phone.value,
+      address: thisBooking.dom.address.value,
+    };
+    for (let starter of thisBooking.dom.starters){
+      if (starter.checked){
+        payload.starters.push(starter.value);
+      }
+    }
+    // console.log(payload);
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    };
+
+    fetch(url, options)
+      .then(function(response){
+        return response.json();
+      })
+      .then(function(parsedResponse){
+        console.log('parsed response', parsedResponse);
+      // })
+      // .then(function(){
+      //   thisBooking.booked.push(payload);
+      });
+  }
+
   render(wrapper){
     const thisBooking = this;
 
@@ -170,7 +245,16 @@ class Booking {
     thisBooking.dom.datePicker = thisBooking.dom.wrapper.querySelector(select.widgets.datePicker.wrapper);
     thisBooking.dom.hourPicker = thisBooking.dom.wrapper.querySelector(select.widgets.hourPicker.wrapper);
 
+    thisBooking.dom.floorPlan = thisBooking.dom.wrapper.querySelector(select.booking.floorPlan);
     thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
+
+    thisBooking.dom.form = thisBooking.dom.wrapper.querySelector(select.booking.form);
+
+    thisBooking.dom.duration = thisBooking.dom.wrapper.querySelector(select.booking.duration);
+    thisBooking.dom.peoples = thisBooking.dom.wrapper.querySelector(select.booking.peoples);
+    thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(select.booking.phone);
+    thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(select.booking.address);
+    thisBooking.dom.starters = thisBooking.dom.wrapper.querySelectorAll(select.booking.starters);
   }
 
   initWidgets(){
@@ -187,6 +271,16 @@ class Booking {
 
     thisBooking.dom.wrapper.addEventListener('updated', function(){
       thisBooking.updateDOM();
+      thisBooking.pickTable();
+    });
+
+    thisBooking.dom.floorPlan.addEventListener('click', function(){
+      thisBooking.pickTable();
+    });
+
+    thisBooking.dom.form.addEventListener('submit', function(event){
+      event.preventDefault;
+      thisBooking.sendBooking();
     });
   }
 }

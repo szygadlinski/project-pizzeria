@@ -222,7 +222,7 @@
       "repeat": "daily",
       "duration": 2,
       "ppl": 3,
-      "starters": ["bread", "lemonWater"]
+      "starters": ["bread", "water"]
     },
     {
       "id": 3,
@@ -232,7 +232,7 @@
       "repeat": "daily",
       "duration": 2,
       "ppl": 3,
-      "starters": ["bread", "lemonWater"]
+      "starters": ["bread", "water"]
     },
     {
       "id": 4,
@@ -252,7 +252,7 @@
       "repeat": "daily",
       "duration": 2,
       "ppl": 3,
-      "starters": ["lemonWater"]
+      "starters": ["water"]
     }
   ],
   "booking": [
