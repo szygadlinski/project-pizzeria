@@ -5,12 +5,14 @@ export const select = {
     menuProduct: '#template-menu-product',
     cartProduct: '#template-cart-product',
     bookingWidget: '#template-booking-widget',
+    homePage: '#template-home-page',
   },
   containerOf: {
     menu: '#product-list',
     cart: '#cart',
     pages: '#pages',
     booking: '.booking-wrapper',
+    home: '.home-wrapper',
   },
   all: {
     menuProducts: '#product-list > .product',
@@ -72,6 +74,13 @@ export const select = {
     address: '.order-confirmation [type="text"]',
     starters: '.booking-options [type="checkbox"]',
   },
+  home: {
+    order: '.order-online',
+    book: '.book-a-table',
+    carousel: '.main-carousel',
+    icon: '.fas',
+    ig: '.ig',
+  },
   nav: {
     links: '.main-nav a',
   },
@@ -117,6 +126,9 @@ export const settings = {
   booking: {
     tableIdAttribute: 'data-table',
   },
+  home: {
+    ig: 'https://www.instagram.com/',
+  },
   db: {
     url: '//localhost:3131',
     product: 'product',
@@ -134,4 +146,5 @@ export const templates = {
   menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
   cartProduct: Handlebars.compile(document.querySelector(select.templateOf.cartProduct).innerHTML),
   bookingWidget: Handlebars.compile(document.querySelector(select.templateOf.bookingWidget).innerHTML),
+  homePage: Handlebars.compile(document.querySelector(select.templateOf.homePage).innerHTML),
 };
