@@ -19,8 +19,7 @@ class Home {
     thisHome.dom.wrapper.innerHTML = generatedHTML;
 
     thisHome.dom.carousel = thisHome.dom.wrapper.querySelector(select.home.carousel);
-    thisHome.dom.icons = thisHome.dom.wrapper.querySelectorAll(select.home.icon);
-    thisHome.dom.ig = thisHome.dom.wrapper.querySelector(select.home.ig);
+    thisHome.dom.ig = thisHome.dom.wrapper.querySelectorAll(select.home.ig);
   }
 
   initWidgets(){
@@ -35,15 +34,10 @@ class Home {
       prevNextButtons: false,
     });
 
-    for(const icon of thisHome.dom.icons){
-      icon.addEventListener('click', function(){
-        window.location.replace(settings.home.ig);
-      });
+    for(const ig of thisHome.dom.ig){
+      ig.setAttribute('href', settings.home.ig);
     }
 
-    thisHome.dom.ig.addEventListener('click', function(){
-      window.location.replace(settings.home.ig);
-    });
   }
 }
 

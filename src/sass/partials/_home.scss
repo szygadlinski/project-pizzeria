@@ -93,6 +93,7 @@
 
     .carousel-inner {
       position: relative;
+      width: 100%;
     }
 
     .carousel-image {
@@ -149,9 +150,18 @@
       left: 50%;
       transform: translateX(-50%);
       font-size: 0;
-      color: $color-light;
       letter-spacing: $base-size / 2;
+    }
 
+    i {
+      color: $color-light;
+
+      &:hover {
+        color: $color-main;
+        cursor: pointer;
+        transform: scale(1.5);
+        transition: $transition;
+      }
     }
 
     .gallery-box:hover {
@@ -171,21 +181,15 @@
         border-radius: $radius;
       }
     }
-
-    i:hover {
-      color: $color-main;
-      cursor: pointer;
-      transform: scale(1.5);
-      transition: $transition;
-    }
   }
 
-  .ig {
+  .txt-link {
     color: $color-main;
     text-decoration: underline;
-  }
+    padding: $base-size 0;
 
-  .ig:hover {
-    cursor: pointer;
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
